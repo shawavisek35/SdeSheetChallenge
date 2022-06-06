@@ -5,7 +5,7 @@ void sort012(int *arr, int n)
     int j = 0; //for one
     int k = n-1; //for two
     
-    for(int m=0;m<n;m++) {
+    while(j<=k){
         if(arr[j] == 0) {
             swap(arr[j], arr[i]);
             i++;
