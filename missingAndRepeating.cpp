@@ -1,5 +1,25 @@
+//Brute force approach
 #include <bits/stdc++.h> 
 
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+    int repeating = 0;
+    unordered_map<int, bool> mp;
+    
+    int sum = 0;
+    for(auto it : arr) {
+        if(mp.find(it) != mp.end()) {
+            repeating = it;
+        }
+        mp[it] = true;
+        sum += it;
+    }
+    
+    return { n*(n+1)/2 - sum + repeating, repeating };
+}
+
+//optimal approach
+#include <bits/stdc++.h> 
 pair<int,int> missingAndRepeating(vector<int> &arr, int n)
 {
     long long sumArr = 0;
