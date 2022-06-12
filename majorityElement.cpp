@@ -1,3 +1,5 @@
+//Brute force approach -> O(n) + space -> O(n)
+
 #include <bits/stdc++.h> 
 int findMajorityElement(int arr[], int n) {
     unordered_map<int,int> fr;
@@ -17,3 +19,28 @@ int findMajorityElement(int arr[], int n) {
     
     return ans;
 }
+
+//Optimal Approach -> O(n)
+//Moore's voting algorithm
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int cnt = 0;
+        int ans = 0;
+        for(auto it : nums) {
+            if(cnt == 0) {
+                ans = it;
+            }
+            
+            if(ans == it) {
+                cnt ++;
+            }
+            else {
+                cnt --;
+            }
+        }
+        
+        return cnt > 0 ? ans : -1;
+    }
+};
