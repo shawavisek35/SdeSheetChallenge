@@ -18,3 +18,35 @@ int lengthOfLongestConsecutiveSequence(vector<int> &arr, int n) {
     
     return maxCount;
 }
+
+//Best approach: Time: O(n) space: O(n)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_map<int, bool> mp;
+        for(auto it : nums) {
+            mp[it] = true;
+        }
+        
+        int cnt = 1;
+        int maxCnt = 0;
+        int n = nums.size();
+        for(int i=0;i<n;i++) {
+            if(mp.find(nums[i] - 1) != mp.end()) {
+                continue;
+            }
+            else {
+                int val = nums[i];
+                int cnt = 1;
+                while(mp.find(val + 1) != mp.end()) {
+                    cnt ++;
+                    val ++;
+                }
+                
+                maxCnt = max(maxCnt, cnt);
+            }
+        }
+        
+        return maxCnt;
+    }
+};
